@@ -1,0 +1,24 @@
+navigate to /mnt on Linux and to windows let "cd/mnt/c"
+navigate to \\wsl.localhost\ from file explorer to view Linux files
+powershell.exe /c start opens file explorer (you can run windows files and programs from wsl)
+
+install in ubuntu
+"sudo apt install <app name>"
+gedit - basic text editor
+audacity - record and edit audio files
+blender - 3d animations and visualizations
+gimp - edit photos
+nautilus - Linux file explorer
+vlc - video player
+
+list installable wsl distros
+"wsl,exe -l -o"
+
+install a named wsl distro
+"wsl.exe --install <DistroName>
+
+list available wsl distros
+"wsl.exe -l"
+
+//view files
+explorer.exe .
