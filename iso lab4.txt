@@ -1,0 +1,163 @@
+gcc -Wall file.c –o file.exe, unde parametrul –Wall impune afișarea pe ecran a tuturor avertismentelor. 
+Hint: Permisiunile asupra fișierelor pot fi acordate în două moduri cu comanda chmod: numeric sau simbolic, următoarele comenzi fiind echivalente: chmod 777 some_file chmod u=rwx,g=rwx,o=rwx some_file chmod a=rwx some_file 
+Lista tuturor utilizatorilor poate fi dedusă din fișierele workspace din /home, fiecare utilizator fiindu-i asociat câte un fișier. 
+Comanda whoami afișează utilizatorul curent.
+Puteți lega comenzile necesare prin pipe. 
+ Pentru o buclă for cu aceeași funcționalitate ca în C, care, de exemplu, îi atribuie lui i valori între 1 și 5, incremental, se poate folosi sintaxa for i in `seq 1 5`. 
+ Pentru a atribui o valoare aritmetică unei variabile și a o evalua, trebuie folosită comanda let, de exemplu let var=3+5
+ls -d ab* //lists all files beginning with ab
+ls -d *ab //lists all file ending with ab
+ls -d *ab* //lists all files containing ab
+
+
+mkdir Lab4
+cd Lab4
+touch sum.c
+nano sum.c
+
+//in nano
+#include <stdio.h>
+int main(){
+int n, v[10], sum = 0;
+scanf("%d", &n);
+for(int i = 0; i < n; i++){
+scanf("%d", &v[i]);
+sum += v[i];
+}
+printf("%d\n", sum);
+return 0;
+}
+
+
+gcc sum.c -o sum_vector
+ls -l sum_vector
+chmod u=rwx,g=x,o=x sum_vector
+ls -l sum_vector
+./sum_vector
+3
+1
+2
+3
+
+chmod u=rw sum_vector
+ls -l sum_vector
+./sum_vector
+touch welcome_message
+nano welcome_message
+
+//in nano
+#!/bin/bash
+read user
+echo -e "Welcome ${user}\n$(date)\n$(cal)"
+
+./welcome_message
+touch users
+nano users
+
+//in nano
+#!/bin/bash
+read user
+echo -e "Welcome ${user}\n$(date)\n$(cal)"
+
+./users
+
+//4)
+touch sum_vector_script
+nano sum_vector_script
+
+//in nano
+#!/bin/bash
+read n
+let sum=0
+let lim=${n}-1
+for i in $(seq 0 ${lim}); do
+        read v
+        let sum=sum+v
+done
+echo -e "${sum}"
+
+./sum_vector_script
+3
+1
+2
+3
+
+
+//5)
+touch compare_nr
+nano compare_nr
+
+//in nano
+#!/bin/bash
+read a
+read b
+if [ $a -gt $b ] ; then
+        echo ">"
+elif [ $a -lt $b ] ; then
+        echo "<"
+else
+        echo "="
+fi
+
+
+//SAU
+#!/bin/bash
+read a
+read b
+if [[ $a > $b ]] ; then
+        echo ">"
+elif [[ $a < $b ]] ; then
+        echo "<"
+else
+        echo "="
+fi
+
+touch compare_positive_nr
+nano compare_positive_nr
+
+//in nano
+#!/bin/bash
+read a
+while [[ $a < 0 ]] ; do
+        read a
+done
+read b
+while [[ $b < 0 ]] ; do
+        read b
+done
+if [[ $a > $b ]] ; then
+        echo ">"
+elif [[ $a < $b ]] ; then
+        echo "<"
+else
+        echo "="
+fi
+
+
+./compare_positive_nr
+3
+4
+
+./compare_positive_nr
+-2
+-3
+4
+-3
+2
+
+//7)
+touch counting_files_copied
+nano counting_files_copied
+
+//in nano
+#!/bin/bash
+i=1
+for file in /bin/[fst]*[bd]
+do
+        echo "File $i : $file"
+        let i++
+done
+
+./counting_files_copied
+
+

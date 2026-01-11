@@ -1,0 +1,78 @@
+iso lab2
+
+pwd //shows where you are in the filesystem
+ls //lists files
+rm name //deletes the file called "name"
+
+Atunci când se dorește introducerea unui spațiu în denumirea unui fișier, trebuie să se folosească fie caracterul de escape specific shell (\ - backslash) înaintea spațiului (sau a unui alt caracter special), sau să se pună întreaga denumirea între “ ” (ca șir de carctere). 
+
+mkdir new_directory //makes a new directory
+touch file.txt //creates file.txt or changes its timestamp if it already exists
+
+nano hello.c //opens a hello.c in a text editor
+
+rm -rf school_projects //removes this directory and all of its subdirectories
+rmdir directory_name //removes directory
+
+ls school_projects/first_semester/iso_tasks/first_lab //shows content in directory first_lab
+
+//1)
+mkdir Laborator\ 2
+cd Laborator\ 2
+touch hello.c
+touch name\ me.txt
+//2)
+rm name\ me.txt
+//3)
+nano hello.c
+
+//in nano
+#include <stdio.h>
+int main(){
+printf("Hello world!\n"); //without newline, the next command shows up next to the printed text
+return 0;
+}
+
+gcc hello.c -o hello //makes an executable
+./hello //runs the executable
+
+//4)
+mkdir -p school_projects/first_semester/iso_tasks/first_lab
+touch school_projects/first_semester/iso_tasks/first_lab/lab1.txt
+
+//5)
+cp -r first_semester second_semester/
+cd second_semester
+mv iso_tasks math_tasks
+mv math_tasks/first_lab math_tasks/first_seminar
+mv math_tasks/first_seminar/lab1.txt math_tasks/first_seminar/complex_problems.pdf
+
+//6)
+touch .secret_code
+ls -a
+
+//7)
+mv .secret_code secret_code.c
+gcc secret_code.c -o suma_secreta
+./suma_secreta
+
+//in nano
+#include <stdio.h>
+int main(){
+int nr1, nr2;
+scanf("%d %d", &nr1, &nr2);
+printf("%d\n", nr1 + nr2);
+return 0;
+}
+
+//8)
+tree school_projects > school_projects_content.txt
+cat school_projects_content.txt
+
+//9)
+rm -rf school_projects
+
+
+
+
+

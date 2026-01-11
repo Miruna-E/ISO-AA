@@ -1,0 +1,51 @@
+Parametrul -i adăugat comenzii ls afișează suplimentar și numărul inode al fișierului/ fișierelor de listat. 
+
+//5)
+SSH - se poate folosi o cheie publica in loc de parola
+SSH e comunicatie securizata => criptare ptr transfer
+chei private + publice => tunel ssh
+cheia privata pe statia proprie (directorul "home" sau ".ssh", într-un fișier fără extensie, "id_rsa") 
+cheia publică va fi copiată pe stația la care se dorește conectarea, în "home", fișierul ".ssh/authorized_keys"
+
+ex:
+andreea de pe statia cu IP 10.220.75.88 vrea să se conecteze pe stația 10.220.74.12 la maria
+andreea: ssh-keygen (isi genereaza cheia)(passphrase se poate omite pentru moment) 
+andreea: isi adauga cheia publică în fișierul de chei autorizate de pe stația ce conține contul maria (adica, de pe 10.220.75.88 copiaza cheia publica din id_rsa.pub si copiază conținutul fișierului și îl trimite mariei (cat /home/andreea/.ssh/id_rsa.pub ))
+maria: maria adaugă pe stația sa cheia primită la cheile autorizate 
+(nano /home/maria/.ssh/authorized_keys )
+
+ex (utilizare): conectare la mașinile dintr-un Cloud (ex OpenStack, AWS), se folosește modulul cloud-init care configurează instanțele fără o parolă, iar la crearea lor trebuie specificată o cheie publică. Cheia publică va trebui adăugată pe contul unui utilizator creat, altfel acea mașina nu va putea fi accesată. 
+
+ex (utilizare): folosirea PuTTY ptr conectarea la mașina virtuală de pe serverul facultății astfel încât parola să nu mai fie cerută la autentificare. aplicația PuTTYgen => cheia publica ptr VM
+PuTTYgen => alege o cheie de tip RSA și apasa Generate => 
+mouse-ul e mișcat în zona din josul barei de status
+Pentru folosirea cheii publice la conectarea, trebuie să se salveze cheia privată generată, întro locație la alegere. Extensia fișierului folosit de utilitarul PuTTY este .ppk. 
+Cheia publică poate fi de salvată, neobligatoriu (poate fi obținută  din cheia privata)
+Conținutul din text field-ul cu cheia publica se copiază în VM (după ce a fost realizată conexiunea prin SSH, folosindu-se PuTTY), în fișierul ~/.ssh/authorized_keys. Dacă acest fișier nu există, atunci el va fi creat. 
+La următoarea conectare, după introducerea IP-ului și a portului, trebuie selectat fișierul cu cheia privată salvat anterior, din meniul Connection – SSH – Auth (in PuTTy Configuration)
+=> la conectare, parola nu e cerută, specificându-se în terminal că s-a folosit cheia publica
+
+//1)
+touch info_mem_script
+nano info_mem_script
+
+//in nano
+#!/bin/bash
+for i in $(seq 0 4) ; do
+        vmstat -t
+        sleep 5
+done
+
+./info_mem_script
+
+//2)
+ls -i /dev | grep " 1[0-9][0-9] "
+//3)
+ifconfig
+//4)
+ping -a -c 4 www.google.com
+//5)
+ssh-keygen
+ls -a .ssh
+cat .ssh/id_ed25519.pub
+ping -a -c 4 www.google.com
