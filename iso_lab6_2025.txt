@@ -1,0 +1,144 @@
+valoarea returnată de ultima comanda poate fi accesată prin variabila $?
+Comanda ping returnează 0 in cazul in care poate fi accesată adresa
+
+ Un script poate primi un argument în linia de comandă în același mod în care
+sunt utilizate argumentele pentru comenzi sau pentru programele compilate. 
+Argumentele se numara de la 1
+ex:
+hello.sh domnule Grigore
+#!/bin/bash
+echo -n "Buna ziua "
+echo $1 $2
+//=> Buna ziua domnule Grigore
+
+echo -n "Buna ziua " //=> fara /n dupa echo
+$0 = numele scriptului //sunt ca argv[] in c
+$# = nr de argumente cu care a fost apelat un script
+
+#!/bin/bash
+if [ $# -ne 2 ]
+then
+ echo "Prea puține argumente!"
+ exit 1
+else
+ echo -n "Buna ziua "
+ echo $1 $2
+fi
+
+-ne = not equal
+exit 1 ptr iesire fortata //ca in c
+
+ Comanda wait poate întrerupe execuția unui script până la încheierea altui proces. ex: “wait 100” => va opri execuția până ce procesul cu PID-ul 100 se încheie
+
+
+//1)
+touch harrypotter.txt
+nano harrypotter.txt
+
+//copy-paste in nano //
+
+echo "Cuvantul wizard apare in text de $(grep -o 'wizard' harrypotter.txt | wc -l) ori" >> harrypotter.txt
+sed -i "s/hats/bonnets/g" harrypotter.txt
+
+//2)
+//echo "$line" ca sa se uite in linie ; line da eroare
+//let cost_total=$((cost_total + suma_crt)) PARANTEZE!
+//suma_crt=${suma_crt::-1} sterge ultimul caracter
+//awk '{print $NF}' ia ultimul cuvant din string
+
+touch cost_livrari
+nano cost_livrari
+
+//in nano
+#!/bin/bash
+let cost_total=0
+while read line ; do
+        if [[ $( echo "$line" | wc -w ) -eq 4 ]] ; then
+                let cost_total=cost_total+10
+        fi
+        suma_crt=$( echo "$line" | awk '{print $NF}' )
+        suma_crt=${suma_crt::-1}
+        let cost_total=$((cost_total + suma_crt))
+done < baza_date
+echo $cost_total
+
+./cost_livrari
+
+//3)
+grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' log.txt >>ip_addr.txt
+
+//4)
+touch creeaza_fisiere
+nano creeaza_fisiere
+mkdir log_archives
+
+//in nano
+#!/bin/bash
+for (( i = 0; i < 5; i++ )); do
+        touch error$RANDOM.log warning$RANDOM.log
+done
+mkdir log_archives
+
+//astea 3 sunt o singura comanda
+\\-t => target
+mv -t log_archives \
+error* \
+warning*
+
+//5)
+touch background_sleep
+nano background_sleep
+
+//in nano
+#!/bin/bash
+let var=0
+while ( true ) ; do
+        let var=var+1
+done
+
+touch stop_subsir
+nano stop_subsir
+
+//in nano
+#!/bin/bash
+kill -9 $(pgrep "$1")
+
+./stop_subsir back
+
+
+//6)
+touch network_check
+touch verifica_retea
+nano verifica_retea
+
+//in nano
+#!/bin/bash
+addresses=(google.com wikipedia.org 192.168.145.236)
+for element in "${addresses[@]}" ; do
+        ping -c 1 $element
+        if [[ $? -eq 0 ]] ; then
+                echo "$(date) - $element is reachable" >> network_check
+        else
+                echo "$(date) - $element is unreachable" >> network_check
+        fi
+done
+
+./verifica_retea
+
+
+//7)
+touch  wait_stop_subsir_verifica_retea
+nano  wait_stop_subsir_verifica_retea
+
+//in nano
+//TREBUIE ""
+#!/bin/bash
+./stop_subsir "$1" &   
+pid1=$!
+./verifica_retea &
+pid2=$!
+wait $pid1 $pid2
+echo "All scripts have finished their execution!"
+
+
+
