@@ -1,0 +1,51 @@
+ps -ef | sed -e 's/'"$(whoami)"'/idiot/g' //using commands inside sed
+mkdir delete1 delete2 //mkdir works with more 
+touch delete_file1 delete_file2 ////touch works with more
+
+PS1="\033[35m\u🥔\033[34mfarming potatoes🥔\033[36min \w :  \033[37m\]"
+
+file filename //file type =>  "ASCII text", "PNG image data", or "ELF 64-bit LSB executable"
+file -b filename //show type without filename => in scripts
+file -i filename //MME type => text/plain; charset=us-ascii.
+
+ex: if [[ $(file --mime-type -b "$file") == */x-shellscript ]]
+ex usage: find . -type f -exec bash -c '[[ "$(file -bi "$1")" == */x-shellscript* ]]' _ {} \; -print 
+
+source ~/.bashrc //reload the configuration file in the current session
+cat filename.txt //display content in terminal
+
+if [ "$fname" = "a.txt" ] || [ "$fname" = "c.txt" ] //or is the exact same
+ls -d d*  // list only the files and directory names in your current directory (not in subdirectories) that start with the letter "d"
+
+//PID
+echo $$ //PID of the current shell or script
+echo $! //PID of the most recently backgrounded process
+pidof process_name //for exact name matches
+pgrep process_name //returns all matching PID; ex: pgrep firefox
+
+
+while read p; do
+  echo "$p"
+done <peptides.txt
+
+sed -i 's/old_text/new_text/g' filename
+
+a="10"
+b="5"
+sum=$((a + b))
+echo $sum
+
+$ a=123
+$ echo "${a::-1}"
+12
+
+arr=(value1 value2 value3)
+
+//overwrite
+echo "Hello, World!" > file.txt
+
+//append
+echo "New line" >> file.txt
+
+//write more lines
+echo -e "Line 1\nLine 2" > file.txt
