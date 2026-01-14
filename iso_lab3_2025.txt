@@ -1,0 +1,16 @@
+iso_lab3_2025
+
+sed -i 's/root/administrator/g' //merge ca sa editezi fisiere si sa salvezi
+sed -i bak 's/root/administrator/g' //face si backup cu extensia .bak
+command | sed -n 's/old_text/new_text/p'    // printeaza doar liniile schimbate
+ps -ef | sed '/?/d' //mai trebuie ceva
+
+//1)
+grep 'succes' /var/log/syslog
+//2)
+grep -v 'succes' /var/log/syslog
+//3)
+grep "[0-9]" /etc/passwd
+//4)
+ps -ef | sed 's/root/administrator/g'
+ps -ef | awk '$6 ~ /?/ {next} {print}'

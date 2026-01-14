@@ -1,0 +1,79 @@
+iso_lab5_2025
+
+Parolele NU se înregistrează NICIODATĂ sub formă de text, direct în cod. Este recomandată folosirea de baze de date și de tehnici
+de criptare sau hashing.
+Comportamentul implicit al compilatorului este de a folosi un mecanism de detecția a atacurilor asupra stack-ului (la depășirea dimensiunii unui buffer la rularea unui program, acest mecanism poate fi observat prin apariția mesajului „*** stack
+smashing detected ***: terminated”). Pentru a putea vedea vulnerabilitatea din
+exemplul de program de mai sus, compilați cu „gcc nume_program -o nume executabil -fno-stack-detector”
+
+
+lsof - list open files
+
+#!/bin/bash
+echo 'mesaj $(date)'
+//prostia asta scrie ca text
+
+//1) a)
+touch mesaj.sh
+nano mesaj.sh
+
+//in nano
+#!/bin/bash
+echo "mesaj $(date)"
+
+./mesaj.sh
+
+//b)
+touch task_periodic.sh
+nano task_periodic.sh
+
+//in nano
+#!/bin/bash
+read file_name
+read i
+while true ; do
+        ./${file_name}
+        sleep ${i}
+done
+
+//c)
+./task_periodic.sh
+nano mesaj.sh
+
+//in nano
+#!/bin/bash
+echo "mesaj $(date)" >> show_task_periodic.txt
+
+./task_periodic.sh
+mesaj.sh
+2
+
+cat show_task_periodic.txt
+
+//d)
+./task_periodic.sh &
+kill -9 3612
+
+//2)
+touch copied_function
+nano copied_function
+
+//3)
+PS1="\033[35m\u🥔\033[34mfarming potatoes🥔\033[36min \w :  \033[37m\]"
+
+//4)
+//a)
+alias
+alias show_all='ls -al'
+//b)
+mkdir attempt_delete
+cd attempt_delete
+mkdir delete1 delete2
+touch delete_file1 delete_file2
+cd ..; rm -rf -- attempt_delete
+
+alias delete_everything='cd ..; rm -rf -- $(pwd)'
+
+//c)
+PS1="\033[31m\u🥔\033[33mfarming potatoes🥔in \033[32m\w on \033[34m\d \\033[35m\T: "
+alias show_hidden='ls -a'
