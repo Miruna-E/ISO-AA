@@ -1,0 +1,32 @@
+colocviu_nr2_2023
+
+//1)
+ps >fake_desktop/procese
+
+//2)
+export variable="string"
+bash -c 'echo "variable $variable exists"'
+
+//3)
+ls -l | awk '{print $1}' | cut -c 2-4
+
+//4)
+mv fake_desktop/procese ~/procese
+
+//5)
+touch produs.sh
+nano produs.sh
+chmod 777 produs.sh
+./produs.sh
+3
+6
+
+//in nano
+#!/bin/bash
+read a
+read b
+product=1
+for (( i=a; i<=b; i++ )) ; do
+        let product=product*i
+done
+echo "Produsul numerelor din interval este $product"
