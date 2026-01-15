@@ -1,0 +1,39 @@
+colocviu_nr2_2024
+
+//1)
+bash
+kill -9 $$
+
+//2)
+ls | wc -w
+
+//3)
+ls /bin >continut_bin.txt
+ls /bin | wc -l >>continut_bin.txt
+cat continut_bin.txt
+
+//4)
+whoami
+ls /home | wc -w
+
+//5)
+free | grep "Mem:" | awk '{print $4}'
+
+//6)
+touch n_fisiere_bin.sh
+nano n_fisiere_bin.sh
+
+//in nano
+#!/bin/bash
+echo "Scrie cate fisiere din bash vrei sa fie afisate"
+read n
+let n=n
+
+while [[ $n -eq 0 ]] ; do
+        echo "Scrie un numar"
+        read n
+done
+
+ls /bin | head -$n
+
+./n_fisiere_bin.sh
