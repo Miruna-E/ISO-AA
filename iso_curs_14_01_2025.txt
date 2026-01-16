@@ -1,0 +1,101 @@
+switch vs router
+
+switch -toate porturile la fel
+router - 1 port diferit => comunicare cu exterior
+
+atacuri de tip activ/pasiv
+
+pasiv
+monitorizare sisteme
+publicarea continutului mesajului
+analiza traficului (=interceptare de mesaje)
+
+activ
+
+salveaza chestii in partitii externe OS (creier)
+
+backdoor = trapdoor
+logic bomb
+cod mobil
+
+virus=program care poate afecta alte programe
+: mecanism de infectare, activare(event/cond), incarcatura(functionalitate)
+infectia=injectare cod de replicare a virusului
+4 faze(max):
+hibernare, propagare(replicare), activare, executie
+
+tipuri
+
+infectie a sectorului de boot (RIP)
+ master boot record, se raspandeste la pornirea sistemului, aproape imposibil de scos (ramai fara OS :( )
+
+infectia de fisiere
+ 
+
+virus => lasa semnatura
+criptat
+o portiune genereaza o cheie si cripteaza restul codului
+/camuflat
+tot virusul e camuflat
+/polimorfic
+virusul se schimba cu fiecare infectie
+/metamorfic
+polimorfic+isi schimba comportamentul
+
+abordare 1
+aflii semnatura
+ia mult timp
+
+abordare eulistica
+aflii un tipar comportamental
+nu e 100% precis
+mult (de x100 ori) m rapid
+
+carantina
+=ca sandbox
+
+DOS, disclosure, modification, destructive, escalation of priviledge
+
+rp, rn = real pozitive/negative
+p-pr =pozitiv predictionat
+n-pr = negativ predictionat
+
+pr=tp/(tp+fp) (%) = precision
+acc=true/all (%) = accuracy 
+
+metode autentificare
+
+daca schimbi ceasul de pe telefon, rip moodle :(
+parola - modificarea unui caracter schimba tot rezultatul
+https => criptare 
+
+role-based access => fiecare rol are drepturi dif (ex: student)
+	=> ...utilizator...
+mandatory acces control
+
+acces de nivel 6 = toate > acces de nivel 4
+
+elem in detective
+viteza, eficienta, colectare info despre technici folosite
+
+IDS, IPS
+inclusion detection (ca la abordarea 1) /prevention system (ca aia eulistica)
+IPS poate respinge un utilizator legitim
+
+
+
+la master, analiza logurilor 
+
+SO pastreaza inregistrari ale activitatii utilizatorilor
+inregistrati native/specifice
+
+criptare cu cheie simetrica (nu prea se mai foloseste)
+
+cheia simetrica e unica ptr fiecare destinatar
+=> m multi destinatari => m multe chei
+
+criptare cu chei asimetrice
+
+firewall = entitate (hw sau sw) de control al datelor transmie intre doua sisteme conectate la retea
+se poate filtra la nivel de port (in general e o alocare standard a porturilor)
+proxy = zona tampon.buffer
