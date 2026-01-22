@@ -23,7 +23,6 @@ echo $! //PID of the most recently backgrounded process
 pidof process_name //for exact name matches
 pgrep process_name //returns all matching PID; ex: pgrep firefox
 
-
 while read p; do
   echo "$p"
 done <peptides.txt
@@ -49,3 +48,17 @@ echo "New line" >> file.txt
 
 //write more lines
 echo -e "Line 1\nLine 2" > file.txt
+
+//don't see the difference with -s ngl
+//disk usage, summarize, human-readable
+du -sh /path to file/
+//all files and subdirectories in /.
+du -sh * 
+
+//size in bytes of a file (bc char yk)
+wc -c afisare.txt
+stat -c %s afisare.txt
+
+//sorting files by size
+du -sh * | sort -h //-hr for descending
+ls -lhS //descending
